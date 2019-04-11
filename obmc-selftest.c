@@ -35,6 +35,15 @@
 #define SELFTESTPASS 11
 #define WDC 21
 
+int self_test(void)
+{
+	/* add your self test here
+	 * on pass: return 0
+	 * on fail: return none zero
+	 */
+	return 0;
+}
+
 int main(int argc,char** argv)
 {
     int fd;
@@ -71,14 +80,18 @@ int main(int argc,char** argv)
     if (rSelfTestRequest) {
         printf("start self test.... \n");
 
-
-        /* do self test */
-
-        /* if failed */
-        /* return reboot(LINUX_REBOOT_CMD_RESTART); */
+        /* call self test */
+        if (self_test()) {
+            /* fails returns none zero */
+            printf("self test failed!\n");
+            return reboot(LINUX_REBOOT_CMD_RESTART);
+        }
 
         /* if self test pass */
         printf("self test pass!\n");
+
+        /* read again INTCR2, since it might already changed during a long self test */
+        intcr2 = *(volatile uint32_t*)virt_addr;
 
         /* clear rSelfTestRequest */
         intcr2 &= (~INTCR2_SELFTESTREQ);
