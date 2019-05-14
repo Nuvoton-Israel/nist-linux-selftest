@@ -1,6 +1,6 @@
 all:
-	$(CC) obmc-selftest.c -o obmc-selftest
+	$(CC) nist-linux-selftest.c -o nist-linux-selftest
 
 .PHONY: clean
 clean:
-	rm -f obmc-selftest
+	rm -f nist-linux-selftest

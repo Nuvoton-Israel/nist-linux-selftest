@@ -24,6 +24,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <linux/reboot.h>
 
 #define INTCR2 0xf0800060
