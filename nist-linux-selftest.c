@@ -26,6 +26,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <linux/reboot.h>
+#include <sys/reboot.h>
 
 #define INTCR2 0xf0800060
 #define INTCR2_SELFTESTREQ 0x400
